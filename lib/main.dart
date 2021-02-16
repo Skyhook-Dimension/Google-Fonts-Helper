@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import './widgets/code_output.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +25,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   GoogleFonts classType;
-  String _fontName = 'ABeeZee';
+  String _fontName = 'Montserrat';
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
 
@@ -122,10 +123,14 @@ class _HomeState extends State<Home> {
                   color: pickerColor,
                   fontSize: 64,
                   fontWeight: FontWeight.w200,
-                  letterSpacing: -5,
+                  letterSpacing: 5,
                 ),
               ),
             ),
+          ),
+          CodeOutput(
+            fontName: _fontName,
+            fontColor: pickerColor.toString(),
           ),
         ],
       ),
