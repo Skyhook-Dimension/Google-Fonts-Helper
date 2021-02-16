@@ -9,29 +9,28 @@ class CodeOutput extends StatefulWidget {
   String fontColor;
   String fontWeight;
   String fontSpacing;
-
+  String sample;
   CodeOutput(
       {@required this.fontName,
       this.fontColor = "Colors.amber",
       this.fontSize = "15",
       this.fontSpacing = "5",
-      this.fontWeight = "200"});
+      this.fontWeight = "200",
+      this.sample});
 
   @override
   _CodeOutputState createState() => _CodeOutputState();
 }
 
 class _CodeOutputState extends State<CodeOutput> {
-  var isDark = false;
+  var isDark = true;
   String _exampleCode;
   String getexamplecode() {
     _exampleCode = ''' Text(
-        "Hello",
+        "${this.widget.sample}",
         style: GoogleFonts.${this.widget.fontName}(
           color: ${this.widget.fontColor},
-          fontSize: 64,
-          fontWeight: FontWeight.w200,
-          letterSpacing: -5,
+          fontSize: ${this.widget.fontSize},
         ),
       ), ''';
     return _exampleCode;
@@ -45,47 +44,52 @@ class _CodeOutputState extends State<CodeOutput> {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
-        width: 400,
-        color: isDark ? Colors.black : Colors.white,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                RichText(
-                  text: TextSpan(
-                    style: const TextStyle(
-                        fontFamily: 'monospace', fontSize: 20.0),
-                    children: <TextSpan>[
-                      DartSyntaxHighlighter(style).format(getexamplecode()),
+        width: 380,
+        child: Card(
+          elevation: 30,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          color: isDark ? Colors.black87 : Colors.white,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  SelectableText.rich(
+                    TextSpan(
+                      style: const TextStyle(
+                          fontFamily: 'monospace', fontSize: 18.0),
+                      children: <TextSpan>[
+                        DartSyntaxHighlighter(style).format(getexamplecode()),
+                      ],
+                    ),
+                  ),
+                  ButtonBar(
+                    children: [
+                      FlatButton(
+                          onPressed: () {
+                            Clipboard.setData(
+                                new ClipboardData(text: getexamplecode()));
+                          },
+                          child: Icon(
+                            Icons.copy,
+                            color: Colors.amber,
+                          )),
+                      FlatButton(
+                          onPressed: () {
+                            setState(() {
+                              isDark = !isDark;
+                            });
+                          },
+                          child: Icon(
+                            Icons.lightbulb,
+                            color: Colors.amber,
+                          )),
                     ],
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FlatButton(
-                        onPressed: () {
-                          Clipboard.setData(
-                              new ClipboardData(text: getexamplecode()));
-                        },
-                        child: Icon(
-                          Icons.copy,
-                          color: Colors.amber,
-                        )),
-                    FlatButton(
-                        onPressed: () {
-                          setState(() {
-                            isDark = !isDark;
-                          });
-                        },
-                        child: Icon(
-                          Icons.lightbulb,
-                          color: Colors.amber,
-                        )),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
