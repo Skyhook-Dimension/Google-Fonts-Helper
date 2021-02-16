@@ -25,9 +25,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   GoogleFonts classType;
-  String _fontName = 'Montserrat';
+  String _fontName = 'ABeeZee';
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
+  TextEditingController _text = TextEditingController();
+  TextEditingController _size = TextEditingController();
+  String _inputString = "Enter Text";
+  int _fontSize = 64;
 
   // ValueChanged<Color> callback
   void changeColor(Color color) {
@@ -62,66 +66,107 @@ class _HomeState extends State<Home> {
                 _fontName = fontName;
                 print('Helooooooo $_fontName');
                 print('Helooooooo2 $_fontName');
+                print("Indiaaaa ${_text.text}");
               });
             },
           ),
-          ElevatedButton(
-            onPressed: () {
-              print("button raised");
-              // return AlertDialog(
-              //   title: const Text('Pick a color!'),
-              // content: SingleChildScrollView(
-              //   child: ColorPicker(
-              //     pickerColor: pickerColor,
-              //     onColorChanged: changeColor,
-              //     showLabel: true,
-              //     pickerAreaHeightPercent: 0.8,
-              //   ),
+          Card(
+            margin: EdgeInsets.symmetric(horizontal: 20.0),
+            child: TextFormField(
+              decoration: InputDecoration(hintText: 'Enter Text'),
+              maxLines: 4,
+              controller: _text,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('Font Size'),
+                Container(
+                  width: 30,
+                  height: 20,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: '64',
+                    ),
 
-              // ),
-              //   actions: <Widget>[
-              // TextButton(
-              //   child: const Text('Got it'),
-              //   onPressed: () {
-              //     setState(() => currentColor = pickerColor);
-              //     Navigator.of(context).pop();
-              //   },
-              // ),
-              //   ],
-              // );
-              return showDialog(
-                context: context,
-                builder: (ctx) => AlertDialog(
-                  title: Text('Pick a color!'),
-                  content: SingleChildScrollView(
-                    child: ColorPicker(
-                      pickerColor: pickerColor,
-                      onColorChanged: changeColor,
-                      showLabel: true,
-                      pickerAreaHeightPercent: 0.8,
-                    ),
+                    controller: _size,
+                    //initialValue: '64',
+                    //keyboardType: TextInputType.number,
                   ),
-                  actions: <Widget>[
-                    TextButton(
-                      child: const Text('Got it'),
-                      onPressed: () {
-                        setState(() => currentColor = pickerColor);
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
                 ),
-              );
-            },
-            child: Text('Change Color'),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    print("button raised");
+
+                    return showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        title: Text('Pick a color!'),
+                        content: SingleChildScrollView(
+                          child: ColorPicker(
+                            pickerColor: pickerColor,
+                            onColorChanged: changeColor,
+                            showLabel: true,
+                            pickerAreaHeightPercent: 0.8,
+                          ),
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text('Got it'),
+                            onPressed: () {
+                              setState(() => currentColor = pickerColor);
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  child: Text('Change Color'),
+                  style: ElevatedButton.styleFrom(primary: pickerColor),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    print('Chutiyaaaaaa');
+                    setState(() {
+                      print('Madarchod');
+                      _fontSize = 18;
+                      if (_text.text.isNotEmpty) {
+                        print('Madarchod---- 1');
+                        _inputString = _text.text;
+                      }
+                      if (_size.text.isNotEmpty) {
+                        print('Madarchod ---- 2');
+                        _fontSize = int.parse(_size.text);
+                      }
+
+                      print("Texttttttt ${_inputString}");
+                      print("Sizeeeee ${_fontSize}");
+                    });
+                  },
+                  child: Text('Generate Code'),
+                )
+              ],
+            ),
           ),
           Flexible(
             child: Center(
               child: Text(
-                _fontName,
+                _inputString,
                 style: GoogleFonts.asMap()[_fontName](
                   color: pickerColor,
-                  fontSize: 64,
+                  fontSize: _fontSize.toDouble(),
                   fontWeight: FontWeight.w200,
                   letterSpacing: 5,
                 ),
