@@ -138,16 +138,11 @@ class _HomeState extends State<Home> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    print('Chutiyaaaaaa');
                     setState(() {
-                      print('Madarchod');
-                      _fontSize = 18;
                       if (_text.text.isNotEmpty) {
-                        print('Madarchod---- 1');
                         _inputString = _text.text;
                       }
                       if (_size.text.isNotEmpty) {
-                        print('Madarchod ---- 2');
                         _fontSize = int.parse(_size.text);
                       }
 
@@ -161,21 +156,28 @@ class _HomeState extends State<Home> {
             ),
           ),
           Flexible(
-            child: Center(
-              child: Text(
-                _inputString,
-                style: GoogleFonts.asMap()[_fontName](
-                  color: pickerColor,
-                  fontSize: _fontSize.toDouble(),
-                  fontWeight: FontWeight.w200,
-                  letterSpacing: 5,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Center(
+                  child: SingleChildScrollView(
+                    child: Text(
+                      _inputString,
+                      style: GoogleFonts.asMap()[_fontName](
+                        color: pickerColor,
+                        fontSize: _fontSize.toDouble(),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                CodeOutput(
+                  fontName: _fontName,
+                  fontColor: pickerColor.toString(),
+                  fontSize: _fontSize.toString(),
+                  sample: _inputString,
+                ),
+              ],
             ),
-          ),
-          CodeOutput(
-            fontName: _fontName,
-            fontColor: pickerColor.toString(),
           ),
         ],
       ),
