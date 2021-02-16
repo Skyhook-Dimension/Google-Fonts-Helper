@@ -26,9 +26,6 @@ class _HomeState extends State<Home> {
   String _fontName = 'ABeeZee';
   @override
   Widget build(BuildContext context) {
-    //print(GoogleFonts.asMap().values.elementAt(2));
-    //Function func = GoogleFonts.asMap().values.elementAt(2);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Google Fonts Helper'),
