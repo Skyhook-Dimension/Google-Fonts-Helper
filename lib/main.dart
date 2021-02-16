@@ -23,38 +23,55 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   GoogleFonts classType;
+  String _fontName = 'ABeeZee';
   @override
   Widget build(BuildContext context) {
     //print(GoogleFonts.asMap().values.elementAt(2));
-    Function func = GoogleFonts.asMap().values.elementAt(2);
+    //Function func = GoogleFonts.asMap().values.elementAt(2);
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Google Fonts Helper'),
       ),
-//       body: DropdownButton<GoogleFonts>(
-//     value: classType,
-//     onChanged: (GoogleFonts newValue) {
-//       setState(() {
-//         viewModel.classType = newValue;
-//       });
-//     },
-//     items: GoogleFonts.values.map((GoogleFonts classType) {
-//       return DropdownMenuItem<GoogleFonts>(
-//         value: classType,
-//         child: Text(classType.toString()));
-//     }).toList();
-// ),
-      body: Center(
-        child: Text(
-          "Hello",
-          style: GoogleFonts.asMap().values.elementAt(3)(
-            color: Color(0xFFFFA500),
-            fontSize: 64,
-            fontWeight: FontWeight.w200,
-            letterSpacing: -5,
+      body: Column(
+        children: [
+          DropdownButton(
+            items: GoogleFonts.asMap()
+                .map((key, value) {
+                  return MapEntry(
+                    key,
+                    DropdownMenuItem<String>(
+                      value: key,
+                      child: Text(key),
+                    ),
+                  );
+                })
+                .values
+                .toList(),
+            value: _fontName,
+            onChanged: (fontName) {
+              setState(() {
+                print('Heliiiiiiii $_fontName');
+                _fontName = fontName;
+                print('Helooooooo $_fontName');
+                print('Helooooooo2 $_fontName');
+              });
+            },
           ),
-        ),
+          Flexible(
+            child: Center(
+              child: Text(
+                _fontName,
+                style: GoogleFonts.asMap()[_fontName](
+                  color: Color(0xFFFFA500),
+                  fontSize: 64,
+                  fontWeight: FontWeight.w200,
+                  letterSpacing: -5,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
