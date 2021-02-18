@@ -6,4 +6,4 @@ It is google fonts helper to help beginners to learn more intuitively by preview
 
 ![Alt Text](https://github.com/Skyhook-Dimension/Google-Fonts-Helper/blob/master/newnewgif.gif)
 
-<p align='center'>Made With ❤️ By <a href="https://github.com/iiitv">Chirag & Vikrant</a></p>
+<p align='center'>Made With ❤️ By <a href="https://github.com/Chirag-Mathur">Chirag</a> & <a href="https://github.com/vikiwarrior">Vikrant</a></p>
