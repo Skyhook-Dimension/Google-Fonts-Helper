@@ -1,6 +1,6 @@
 # Google Fonts Helper
 
-It is google fonts helper to help beginners to learn more intuitively by previewing the text in their desired font, color, and size and generating the dart code snippet for it.
+It is a google fonts helper to help beginners to learn more intuitively by previewing the text in their desired font, color, and size and generating the dart code snippet for it.
 
 ## Our Project
 
