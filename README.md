@@ -1,16 +1,9 @@
-# google_fonts_helper
+# Google Fonts Helper
 
-A new Flutter project.
+It is google fonts helper to help beginners to learn more intuitively by previewing the text in their desired font, color, and size and generating the dart code snippet for it.
 
-## Getting Started
+## Our Project
 
-This project is a starting point for a Flutter application.
+![Alt Text](https://github.com/Skyhook-Dimension/Google-Fonts-Helper/blob/master/newnewgif.gif)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p align='center'>Made With ❤️ By <a href="https://github.com/iiitv">Chirag & Vikrant</a></p>
